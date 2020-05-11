@@ -186,6 +186,9 @@
     <Compile Include="UsersMethods\SearchByEmailAddress.cs" />
     <Compile Include="UsersMethods\SearchByID.cs" />
     <Compile Include="UsersMethods\SearchByName.cs" />
+    <Compile Include="UsersMethods\SearchByRegion.cs" />
+    <Compile Include="UsersMethods\UserSearchSummary.cs" />
+    <Compile Include="UsersModels\NoParameterUserResponse.cs" />
     <Compile Include="UsersModels\UsersSearchRequest.cs" />
   </ItemGroup>
   <ItemGroup>
