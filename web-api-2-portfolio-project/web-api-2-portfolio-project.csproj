@@ -172,6 +172,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceDatabase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Config.cs" />
     <Compile Include="Shared\DBC.cs" />
     <Compile Include="Staff.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
