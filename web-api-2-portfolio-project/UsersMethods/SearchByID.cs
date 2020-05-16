@@ -17,7 +17,7 @@ namespace web_api_2_portfolio_project.UsersMethods
                 }
                 else
                 {
-                    errors.Add("No user found with an ID of " + iD);
+                    errors.Add($"No user found with an ID of '{iD}'");
 
                     return errors;
                 }

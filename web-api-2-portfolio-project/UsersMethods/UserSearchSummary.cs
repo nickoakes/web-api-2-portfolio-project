@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using web_api_2_portfolio_project.Shared;
 using web_api_2_portfolio_project.UsersModels;
 
@@ -13,6 +14,10 @@ namespace web_api_2_portfolio_project.UsersMethods
             SearchByName searchByName = new SearchByName();
 
             SearchByRegion searchByRegion = new SearchByRegion();
+
+            SearchBySubscriptionType searchBySubscriptionType = new SearchBySubscriptionType();
+
+            SearchByActiveSubscription searchByActiveSubscription = new SearchByActiveSubscription();
 
             List<string> errors = new List<string>();
 
@@ -32,10 +37,7 @@ namespace web_api_2_portfolio_project.UsersMethods
 
                 if (result.GetType() == typeof(List<User>))
                 {
-                    foreach(User user in (List<User>)result)
-                    {
-                        matchedUsers.Add(user);
-                    }
+                    matchedUsers = result;
                 }
                 else
                 {
@@ -48,10 +50,77 @@ namespace web_api_2_portfolio_project.UsersMethods
 
             if (!string.IsNullOrWhiteSpace(request.Region))
             {
-                return searchByRegion.SearchUsersByRegion(dbc, request.Region, errors);
+                var result = searchByRegion.SearchUsersByRegion(dbc, 
+                                                                request.Region, 
+                                                                errors, 
+                                                                matchedUsers);
+
+                if(result.GetType() == typeof(List<User>))
+                {
+                    matchedUsers = result;
+                }
+                else
+                {
+                    foreach(string error in (List<string>)result)
+                    {
+                        errors.Add(error);
+                    }
+                }
             }
 
-            return new NoParameterUserResponse("Please submit at least one search parameter to return users");
+            if (!string.IsNullOrWhiteSpace(request.SubscriptionType))
+            {
+                var result = searchBySubscriptionType
+                             .SearchUsersBySubscriptionType(dbc,
+                                                            request.SubscriptionType,
+                                                            errors,
+                                                            matchedUsers);
+
+                if(result.GetType() == typeof(List<User>))
+                {
+                    matchedUsers = result;
+                }
+                else
+                {
+                    foreach(string error in (List<string>)result)
+                    {
+                        errors.Add(error);
+                    }
+                }
+            }
+
+            if(request.ActiveSubscription != null)
+            {
+                var result = searchByActiveSubscription
+                             .SearchUsersByActiveSubscription(dbc,
+                                                              request.ActiveSubscription,
+                                                              errors,
+                                                              matchedUsers);
+
+                if(result.GetType() == typeof(List<User>))
+                {
+                    return result;
+                }
+                else
+                {
+                    matchedUsers = new List<User>();
+
+                    errors = result;
+                }
+            }
+
+            if (matchedUsers.Any())
+            {
+                return matchedUsers;
+            } 
+            else if (errors.Any())
+            {
+                return errors;
+            }
+            else
+            {
+                return new NoParameterUserResponse("Please submit at least one search parameter to return users");
+            }
         }
     }
 }

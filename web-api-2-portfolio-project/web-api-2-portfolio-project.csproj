@@ -174,6 +174,7 @@
     </Compile>
     <Compile Include="Shared\Config.cs" />
     <Compile Include="Shared\DBC.cs" />
+    <Compile Include="Shared\MatchedUsers.cs" />
     <Compile Include="Staff.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
@@ -183,10 +184,12 @@
     <Compile Include="User.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsersMethods\SearchByActiveSubscription.cs" />
     <Compile Include="UsersMethods\SearchByEmailAddress.cs" />
     <Compile Include="UsersMethods\SearchByID.cs" />
     <Compile Include="UsersMethods\SearchByName.cs" />
     <Compile Include="UsersMethods\SearchByRegion.cs" />
+    <Compile Include="UsersMethods\SearchBySubscriptionType.cs" />
     <Compile Include="UsersMethods\UserSearchSummary.cs" />
     <Compile Include="UsersModels\NoParameterUserResponse.cs" />
     <Compile Include="UsersModels\UsersSearchRequest.cs" />

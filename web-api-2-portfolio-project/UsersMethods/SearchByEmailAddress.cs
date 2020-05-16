@@ -16,7 +16,7 @@ namespace web_api_2_portfolio_project.UsersMethods
                 }
                 else
                 {
-                    errors.Add("No users found with the email address " + emailAddress);
+                    errors.Add($"No users found with the email address '{emailAddress}'.");
                 }
             }
 

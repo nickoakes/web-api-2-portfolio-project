@@ -8,6 +8,6 @@
         public string EmailAddress { get; set; }
         public string Region { get; set; }
         public string SubscriptionType { get; set; }
-        public bool ActiveSubscription { get; set; }
+        public bool? ActiveSubscription { get; set; } = null;
     }
 }

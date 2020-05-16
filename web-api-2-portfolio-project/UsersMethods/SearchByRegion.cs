@@ -10,6 +10,8 @@ namespace web_api_2_portfolio_project.UsersMethods
         {
             List<User> matchedUsers = new List<User>();
 
+            MatchedUsers methods = new MatchedUsers();
+
             if (!string.IsNullOrWhiteSpace(region))
             {
                 List<string> regionList = region
@@ -40,23 +42,18 @@ namespace web_api_2_portfolio_project.UsersMethods
                     }
                     else
                     {
-                        errors.Add("The region '" + region + "' was not found");
+                        errors.Add($"The region '{region}' was not found");
 
                         return errors;
                     }
                 }
             }
 
-            if (matchedUsers.Any())
-            {
-                return matchedUsers;
-            }
-            else
-            {
-                errors.Add("No users were found for the region " + region);
-
-                return errors;
-            }
+            return methods.ProcessMatchedUsers(matchedUsers, 
+                                               prevMatchedUsers, 
+                                               "region", 
+                                               region, 
+                                               errors);
         }
     }
 }

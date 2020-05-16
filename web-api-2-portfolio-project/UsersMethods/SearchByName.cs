@@ -40,10 +40,7 @@ namespace web_api_2_portfolio_project.UsersMethods
                 }
                 else
                 {
-                    errors.Add("No users found with a first name of " +
-                               request.FirstName +
-                               " and a last name of " +
-                               request.LastName);
+                    errors.Add($"No users found with a first name of '{request.FirstName}' and a last name of '{request.LastName}'.");
 
                     return errors;
                 }
@@ -63,7 +60,7 @@ namespace web_api_2_portfolio_project.UsersMethods
                 }
                 else
                 {
-                    errors.Add("No users found with a first name of " + request.FirstName);
+                    errors.Add($"No users found with a first name of '{request.FirstName}'.");
 
                     return errors;
                 }
@@ -83,7 +80,7 @@ namespace web_api_2_portfolio_project.UsersMethods
                 }
                 else
                 {
-                    errors.Add("No users found with a last name of " + request.LastName);
+                    errors.Add($"No users found with a last name of '{request.LastName}'.");
                 }
             }
             else
