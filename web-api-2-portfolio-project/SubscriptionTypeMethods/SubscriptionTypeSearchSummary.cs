@@ -21,7 +21,7 @@ namespace web_api_2_portfolio_project.SubscriptionTypeMethods
             if (!string.IsNullOrWhiteSpace(request.SubscriptionID))
             {
                 return searchByID
-                       .SearchSubscriptionTypesByID(dbc, request.SubscriptionID, errors);
+                       .SearchEntitiesByID(dbc, "SubscriptionTypes", request.SubscriptionID, errors);
             }
 
             if(!string.IsNullOrWhiteSpace(request.SubscriptionName))

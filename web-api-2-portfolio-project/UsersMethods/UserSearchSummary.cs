@@ -27,7 +27,7 @@ namespace web_api_2_portfolio_project.UsersMethods
 
             if (!string.IsNullOrEmpty(request.UserID))
             {
-                return searchByID.SearchUsersByID(dbc, request.UserID, errors);
+                return searchByID.SearchEntitiesByID(dbc, "Users", request.UserID, errors);
             }
 
             if (!string.IsNullOrWhiteSpace(request.FirstName) ||

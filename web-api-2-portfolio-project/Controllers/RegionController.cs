@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using web_api_2_portfolio_project.RegionMethods;
+using web_api_2_portfolio_project.RegionModels;
 using web_api_2_portfolio_project.Shared;
-using web_api_2_portfolio_project.SubscriptionTypeMethods;
-using web_api_2_portfolio_project.SubscriptionTypeModels;
 
 namespace web_api_2_portfolio_project.Controllers
 {
     [RoutePrefix("api")]
-    public class SubscriptionTypeController : ApiController
+    public class RegionController : ApiController
     {
         private bool CheckClientSecret()
         {
@@ -42,16 +42,16 @@ namespace web_api_2_portfolio_project.Controllers
             }
         }
 
-        [Route("subscription-types")]
+        [Route("regions")]
         [HttpPost]
-        [SwaggerResponse(200, Description = "Success", Type = typeof(User))]
-        public dynamic GetSubscriptionType(SubscriptionTypeSearchRequest request)
+        [SwaggerResponse(200, Description = "Success", Type = typeof(Region))]
+        public dynamic GetRegion(RegionSearchRequest request)
         {
-            SubscriptionTypeSearchSummary subscriptionTypeSearchSummary = new SubscriptionTypeSearchSummary();
+            RegionSearchSummary regionSearchSummary = new RegionSearchSummary();
 
             if (CheckClientSecret())
             {
-                return subscriptionTypeSearchSummary.SearchSubscriptionTypes(request);
+                return regionSearchSummary.SearchRegions(request);
             }
             else
             {

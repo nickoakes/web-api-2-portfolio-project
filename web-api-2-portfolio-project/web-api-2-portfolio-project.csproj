@@ -143,6 +143,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\SubscriptionTypeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -155,6 +156,10 @@
     <Compile Include="Region.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="RegionMethods\RegionSearchSummary.cs" />
+    <Compile Include="RegionMethods\SearchByHeadOffice.cs" />
+    <Compile Include="RegionMethods\SearchByRegionName.cs" />
+    <Compile Include="RegionModels\RegionSearchRequest.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
@@ -176,13 +181,13 @@
     <Compile Include="Shared\Config.cs" />
     <Compile Include="Shared\DBC.cs" />
     <Compile Include="Shared\MatchedUsers.cs" />
+    <Compile Include="Shared\SearchByID.cs" />
     <Compile Include="Staff.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="SubscriptionType.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubscriptionTypeMethods\SearchByID.cs" />
     <Compile Include="SubscriptionTypeMethods\SearchByName.cs" />
     <Compile Include="SubscriptionTypeMethods\SearchByPriceRange.cs" />
     <Compile Include="SubscriptionTypeMethods\SubscriptionTypeSearchSummary.cs" />
@@ -192,7 +197,6 @@
     </Compile>
     <Compile Include="UsersMethods\SearchByActiveSubscription.cs" />
     <Compile Include="UsersMethods\SearchByEmailAddress.cs" />
-    <Compile Include="UsersMethods\SearchByID.cs" />
     <Compile Include="UsersMethods\SearchByName.cs" />
     <Compile Include="UsersMethods\SearchByRegion.cs" />
     <Compile Include="UsersMethods\SearchBySubscriptionType.cs" />
@@ -218,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Region\" />
     <Folder Include="Views\SubscriptionType\" />
   </ItemGroup>
   <ItemGroup>
