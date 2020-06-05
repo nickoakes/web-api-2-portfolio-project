@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using web_api_2_portfolio_project.RegionModels;
 using web_api_2_portfolio_project.Shared;
 
 namespace web_api_2_portfolio_project.RegionMethods
@@ -18,13 +19,14 @@ namespace web_api_2_portfolio_project.RegionMethods
                            .Replace(" ", "") == processedName)
                .Any())
             {
-                return dbc
-                       .Regions
-                       .Where(x => x
-                                   .RegionName
-                                   .ToLower()
-                                   .Replace(" ", "") == processedName)
-                       .FirstOrDefault();
+                return new RegionDTO(dbc
+                                     .Regions
+                                     .Where(x => x
+                                                 .RegionName
+                                                 .ToLower()
+                                                 .Replace(" ", "") == processedName)
+                                     .FirstOrDefault(),
+                                     dbc);
             }
             else
             {

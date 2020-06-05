@@ -99,7 +99,14 @@ namespace web_api_2_portfolio_project.UsersMethods
 
                 if(result.GetType() == typeof(List<User>))
                 {
-                    return result;
+                    List<UserDTO> userDTOs = new List<UserDTO>();
+
+                    foreach(User user in result)
+                    {
+                        userDTOs.Add(new UserDTO(user, dbc));
+                    }
+
+                    return userDTOs;
                 }
                 else
                 {
@@ -111,7 +118,14 @@ namespace web_api_2_portfolio_project.UsersMethods
 
             if (matchedUsers.Any())
             {
-                return matchedUsers;
+                List<UserDTO> userDTOs = new List<UserDTO>();
+
+                foreach (User user in matchedUsers)
+                {
+                    userDTOs.Add(new UserDTO(user, dbc));
+                }
+
+                return userDTOs;
             } 
             else if (errors.Any())
             {

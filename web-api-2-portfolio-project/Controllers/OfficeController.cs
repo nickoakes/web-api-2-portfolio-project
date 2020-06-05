@@ -1,16 +1,14 @@
-﻿using Swashbuckle.Swagger.Annotations;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using web_api_2_portfolio_project.Shared;
-using web_api_2_portfolio_project.UsersMethods;
-using web_api_2_portfolio_project.UsersModels;
 
 namespace web_api_2_portfolio_project.Controllers
 {
     [RoutePrefix("api")]
-    public class UsersController : ApiController
+    public class OfficeController : ApiController
     {
         private bool CheckClientSecret()
         {
@@ -42,21 +40,12 @@ namespace web_api_2_portfolio_project.Controllers
             }
         }
 
-        [Route("users")]
-        [HttpPost]
-        [SwaggerResponse(200, Description = "Success", Type = typeof(List<UserDTO>))]
-        public dynamic GetUser(UsersSearchRequest request)
-        {
-            UserSearchSummary userSearchSummary = new UserSearchSummary();
+        //[Route("offices")]
+        //[HttpPost]
+        //[SwaggerResponse(200, Description = "Success", Type = typeof(Office))]
+        //public dynamic GetOffice()
+        //{
 
-            if (CheckClientSecret())
-            {
-                return userSearchSummary.SearchByUser(request);
-            }
-            else
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
-        }
+        //}
     }
 }
