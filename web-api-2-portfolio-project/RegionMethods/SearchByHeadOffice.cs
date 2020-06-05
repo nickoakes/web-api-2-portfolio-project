@@ -20,7 +20,10 @@ namespace web_api_2_portfolio_project.RegionMethods
             {
                 Office matchedOffice = dbc
                                        .Offices
-                                       .Where(x => x.OfficeName == processedName)
+                                       .Where(x => x
+                                                   .OfficeName
+                                                   .ToLower()
+                                                   .Replace(" ", "") == processedName)
                                        .FirstOrDefault();
 
                 if(dbc
