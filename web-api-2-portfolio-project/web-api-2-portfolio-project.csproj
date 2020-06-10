@@ -191,6 +191,7 @@
     <Compile Include="Shared\DBC.cs" />
     <Compile Include="Shared\MatchedUsers.cs" />
     <Compile Include="Shared\SearchByID.cs" />
+    <Compile Include="Shared\SearchByName.cs" />
     <Compile Include="Staff.cs">
       <DependentUpon>ServiceDatabase.tt</DependentUpon>
     </Compile>

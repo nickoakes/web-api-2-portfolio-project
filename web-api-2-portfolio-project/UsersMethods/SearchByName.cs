@@ -9,6 +9,8 @@ namespace web_api_2_portfolio_project.UsersMethods
     {
         public dynamic SearchUsersByName(DBC dbc, UsersSearchRequest request, List<string> errors)
         {
+            Shared.SearchByName searchByName = new Shared.SearchByName();
+
             string firstName = !string.IsNullOrWhiteSpace(request.FirstName) ?
                                request
                                .FirstName
@@ -48,40 +50,12 @@ namespace web_api_2_portfolio_project.UsersMethods
             else if(!string.IsNullOrWhiteSpace(firstName) &&
                       string.IsNullOrWhiteSpace(lastName))
             {
-                if(dbc
-                   .Users
-                   .Where(x => x.FirstName == firstName)
-                   .Any())
-                {
-                    return dbc
-                           .Users
-                           .Where(x => x.FirstName == firstName)
-                           .ToList();
-                }
-                else
-                {
-                    errors.Add($"No users found with a first name of '{request.FirstName}'.");
-
-                    return errors;
-                }
+                return searchByName.SearchEntitiesByName(dbc, "Users", "FirstName", firstName, errors);
             } 
             else if(string.IsNullOrWhiteSpace(firstName) &&
                     !string.IsNullOrWhiteSpace(lastName))
             {
-                if(dbc
-                   .Users
-                   .Where(x => x.LastName == lastName)
-                   .Any())
-                {
-                    return dbc
-                           .Users
-                           .Where(x => x.LastName == lastName)
-                           .ToList();
-                }
-                else
-                {
-                    errors.Add($"No users found with a last name of '{request.LastName}'.");
-                }
+                return searchByName.SearchEntitiesByName(dbc, "Users", "LastName", lastName, errors);
             }
             else
             {
