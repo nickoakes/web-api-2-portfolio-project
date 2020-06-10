@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Net.Http;
 using System.Web.Http;
+using web_api_2_portfolio_project.OfficeMethods;
+using web_api_2_portfolio_project.OfficeModels;
 using web_api_2_portfolio_project.Shared;
 
 namespace web_api_2_portfolio_project.Controllers
@@ -40,12 +42,21 @@ namespace web_api_2_portfolio_project.Controllers
             }
         }
 
-        //[Route("offices")]
-        //[HttpPost]
-        //[SwaggerResponse(200, Description = "Success", Type = typeof(Office))]
-        //public dynamic GetOffice()
-        //{
+        [Route("offices")]
+        [HttpPost]
+        [SwaggerResponse(200, Description = "Success", Type = typeof(List<OfficeDTO>))]
+        public dynamic GetOffice(OfficeSearchRequest request)
+        {
+            OfficeSearchSummary officeSearchSummary = new OfficeSearchSummary();
 
-        //}
+            if (CheckClientSecret())
+            {
+                return officeSearchSummary.SearchOffices(request);
+            }
+            else
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

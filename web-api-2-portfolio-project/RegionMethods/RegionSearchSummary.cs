@@ -37,9 +37,7 @@ namespace web_api_2_portfolio_project.RegionMethods
             }
             else
             {
-                errors.Add("No regions found.");
-
-                return errors;
+                return new NoParameterRegionResponse("No regions found. Please check your request for validity against the fields below.");
             }
         }
     }

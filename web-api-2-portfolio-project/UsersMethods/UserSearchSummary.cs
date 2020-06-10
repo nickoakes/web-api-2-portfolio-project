@@ -133,7 +133,7 @@ namespace web_api_2_portfolio_project.UsersMethods
             }
             else
             {
-                return new NoParameterUserResponse("Please submit at least one search parameter to return users");
+                return new NoParameterUserResponse("No users found. Please check your request for validity against the fields below.");
             }
         }
     }

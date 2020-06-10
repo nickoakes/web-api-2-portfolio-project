@@ -59,9 +59,7 @@ namespace web_api_2_portfolio_project.SubscriptionTypeMethods
             }
             else
             {
-                errors.Add("No subscription types found.");
-
-                return errors;
+                return new NoParameterSubscriptionTypeResponse("No subscription types found. Please check your request for validity against the fields below.");
             }
         }
     }

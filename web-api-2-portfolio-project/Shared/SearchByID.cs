@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using web_api_2_portfolio_project.OfficeModels;
 using web_api_2_portfolio_project.RegionModels;
 using web_api_2_portfolio_project.UsersModels;
 
@@ -62,6 +63,24 @@ namespace web_api_2_portfolio_project.Shared
                             return errors;
                         }
 
+                    case "Offices":
+
+                        if(dbc.Offices.Where(x => x.OfficeID == parsedID).Any())
+                        {
+                            return new OfficeDTO(dbc
+                                                 .Offices
+                                                 .Where(x => x
+                                                             .OfficeID == parsedID)
+                                                 .FirstOrDefault(),
+                                                 dbc);
+                        }
+                        else
+                        {
+                            errors.Add($"No office found with an ID of '{iD}'");
+
+                            return errors;
+                        }
+
                     default:
 
                         errors.Add($"The field name passed was not recognised.");
@@ -73,7 +92,7 @@ namespace web_api_2_portfolio_project.Shared
             }
             else
             {
-                errors.Add("Please ensure a GUID is submitted for SubscriptionID");
+                errors.Add("Please ensure that a GUID-parsable string is submitted for ID.");
 
                 return errors;
             }
